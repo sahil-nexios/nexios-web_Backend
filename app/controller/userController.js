@@ -123,6 +123,7 @@ const portfolio = async (req, res) => {
             }
             return res.status(HTTP.SUCCESS).send({ status: true, code: HTTP.SUCCESS, message: "Our Portfolio !", data: results })
         });
+        
     } catch (error) {
         console.log("🚀 ~ constour_client= ~ error:", error)
         return res.status(HTTP.SUCCESS).send({ code: HTTP.INTERNAL_SERVER_ERROR, status: false, message: "Something Went Wrong !", });
