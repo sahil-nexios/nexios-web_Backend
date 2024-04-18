@@ -1,6 +1,6 @@
 const { request } = require("express")
 const HTTP = require("../../constants/resCode")
-const connection = require("../../config/connection")
+// const connection = require("../../config/connection")
 const { schedule, apply_nowEmail, contact_usemail } = require("../middleware/sendmail")
 
 const addSchedule = async (req, res) => {
@@ -123,12 +123,31 @@ const portfolio = async (req, res) => {
             }
             return res.status(HTTP.SUCCESS).send({ status: true, code: HTTP.SUCCESS, message: "Our Portfolio !", data: results })
         });
-        
+
     } catch (error) {
         console.log("🚀 ~ constour_client= ~ error:", error)
         return res.status(HTTP.SUCCESS).send({ code: HTTP.INTERNAL_SERVER_ERROR, status: false, message: "Something Went Wrong !", });
     }
 }
+
+const open_position = (req, res) => {
+    try {
+        const query = 'SELECT * FROM open_position';
+        connection.query(query, (err, results) => {
+            if (err) {
+                console.error('Error executing query: ' + err.stack);
+                return res.status(HTTP.SUCCESS).send({ status: false, code: HTTP.BAD_REQUEST, message: "Something Else in Fetch Data !" });
+            }
+            return res.status(HTTP.SUCCESS).send({ status: true, code: HTTP.SUCCESS, message: "Positions !", data: results })
+        });
+
+    } catch (error) {
+        console.log("🚀 ~ error:", error)
+        return res.status(HTTP.SUCCESS).send({ code: HTTP.INTERNAL_SERVER_ERROR, status: false, message: "Something Went Wrong !", });
+    }
+}
+
+
 
 
 
@@ -138,5 +157,6 @@ module.exports = {
     contact_us,
     our_client,
     our_team,
-    portfolio
+    portfolio,
+    open_position
 }

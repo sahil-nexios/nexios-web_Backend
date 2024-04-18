@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8080;
 var cors = require('cors')
 
 const userRouter = require("./app/router/userRouter");
-require("./config/connection");
+// require("./config/connection");
 
 app.use('/upload', express.static('upload'));
 app.use('/public', express.static('public'));
