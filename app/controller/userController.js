@@ -1,6 +1,6 @@
 const { request } = require("express")
 const HTTP = require("../../constants/resCode")
-// const connection = require("../../config/connection")
+const connection = require("../../config/connection")
 const { schedule, apply_nowEmail, contact_usemail } = require("../middleware/sendmail")
 
 const addSchedule = async (req, res) => {
